@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibnu Zaki Hasan | IBN.AI</title>
+<style>
+:root {
+  --bg:#0a0d12; --panel:#111722; --text:#f3f6fb;
+  --muted:#a4afc0; --line:#283342; --lime:#c6f36a;
+  --cyan:#70e5e2;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font:inherit}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{width:min(1100px,92%);margin:auto}
+header{position:sticky;top:0;background:#0a0d12f2;border-bottom:1px solid var(--line);z-index:5;backdrop-filter:blur(12px)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;flex-wrap:wrap}
+.brand{font-size:1.3rem;font-weight:900}
+.brand span,h1 span{color:var(--lime)}
+.navlinks{display:flex;gap:5px;flex-wrap:wrap}
+.navlinks a{padding:8px 10px;color:var(--muted);border-radius:8px}
+.navlinks a:hover,.navlinks a.active{background:#1c2731;color:var(--lime)}
+.menu-btn{display:none}
+.page{display:none;min-height:75vh;padding:45px 0}
+.page.active{display:block}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center;min-height:470px}
+.eyebrow{color:var(--lime);letter-spacing:2px;font-size:.8rem;font-weight:bold}
+h1{font-size:clamp(3rem,7vw,5rem);line-height:1.05;letter-spacing:-3px}
+h2{font-size:clamp(2rem,5vw,3rem);line-height:1.1}
+.lead,.muted,.card p,.section-head p{color:var(--muted)}
+.btn{padding:10px 15px;border:1px solid var(--line);border-radius:10px;background:#151b25;color:var(--text)}
+.btn:hover{border-color:var(--cyan)}
+.btn.primary{background:var(--lime);color:#10140a;font-weight:bold;border-color:var(--lime)}
+.buttons,.tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.tag{font-size:.8rem;padding:4px 9px;border:1px solid #344251;border-radius:20px;color:var(--cyan)}
+.photo-card,.card,.gamebox{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+.photo-frame{aspect-ratio:4/5;border-radius:14px;background:linear-gradient(140deg,var(--lime),var(--cyan));display:flex;align-items:center;justify-content:center;text-align:center;color:#0a0d12}
+.photo-frame strong{font-size:5rem;display:block;line-height:1}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card h3{margin:5px 0}
+.bio-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bio-item{background:#0d121a;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-wrap:anywhere}
+.bio-item small{display:block;color:var(--muted)}
+.callout{margin-top:16px;padding:16px;border:1px solid #3d512c;background:#141d16;border-radius:13px}
+.code{background:#080d14;border:1px solid var(--line);padding:15px;border-radius:10px;overflow:auto;color:var(--cyan)}
+.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:350px;margin:20px auto}
+.cell{aspect-ratio:1;background:#0b1119;color:var(--lime);font-size:2.8rem;font-weight:bold;border:1px solid #344251;border-radius:12px}
+.cell:disabled{cursor:default}
+.contact-item{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;overflow-wrap:anywhere}
+.contact-item small{display:block;color:var(--muted)}
+.contact-item b{color:var(--cyan)}
+footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted)}
+/* IBN.AI CHAT */
+.chat-shell{max-width:820px;margin:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.chat-head{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--line)}
+.ai-avatar{width:44px;height:44px;display:grid;place-items:center;background:linear-gradient(135deg,var(--lime),var(--cyan));color:#0b1115;font-weight:900;border-radius:12px}
+.chat-messages{height:340px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:13px}
+.bubble-row{display:flex}.user-row{justify-content:flex-end}
+.bubble{max-width:88%;padding:12px 15px;border-radius:15px;white-space:pre-wrap;overflow-wrap:anywhere}
+.bot-bubble{background:#202a35;border:1px solid #344251}
+.user-bubble{background:var(--lime);color:#11160a}
+.chat-suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:0 15px 14px}
+.suggestion{background:#17212b;border:1px solid #344251;color:var(--cyan);border-radius:20px;padding:7px 11px}
+.chat-form{display:flex;gap:9px;padding:14px;border-top:1px solid var(--line)}
+.chat-form textarea{flex:1;resize:vertical;min-height:44px;max-height:120px;background:#080d14;color:white;border:1px solid #344251;border-radius:10px;padding:10px;font:inherit}
+.chat-foot{font-size:.8rem;color:var(--muted);padding:0 15px 15px}
+
+/* PROJECT SHOWCASE */
+.project-filters{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0}
+.project-filter{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 15px;border-radius:30px}
+.project-filter:hover,.project-filter.active{background:var(--lime);color:#10140a;border-color:var(--lime);font-weight:bold}
+.project-card{display:flex;flex-direction:column;align-items:flex-start;transition:transform .2s ease,border-color .2s ease}
+.project-card:hover{transform:translateY(-4px);border-color:var(--lime)}
+.project-card[hidden]{display:none}
+.project-icon{width:54px;height:54px;display:grid;place-items:center;background:#1c2731;border:1px solid var(--line);border-radius:14px;font-size:1.7rem;margin-bottom:18px}
+.project-card .tags{margin:12px 0 18px}
+.project-detail{margin-top:auto}
+.project-modal{width:min(540px,90%);max-height:85vh;overflow-y:auto;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:24px}
+.project-modal::backdrop{background:rgb(0 0 0 / 75%);backdrop-filter:blur(5px)}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.modal-head h2{font-size:1.8rem;overflow-wrap:anywhere}
+#projectCount{margin-top:18px;font-size:.9rem}
+@media(prefers-reduced-motion:reduce){.project-card{transition:none}}
+@media(max-width:760px){
+ .hero,.grid,.grid.three{grid-template-columns:1fr}
+ .hero{padding:15px 0}
+ .photo-card{max-width:320px;width:100%;margin:auto}
+ .menu-btn{display:block;background:var(--panel);color:white;border:1px solid var(--line);padding:8px;border-radius:8px}
+ .navlinks{display:none;width:100%;grid-template-columns:repeat(3,1fr)}
+ .navlinks.open{display:grid}
+ .navlinks a{text-align:center;font-size:.85rem}
+ .bio-list{grid-template-columns:1fr}
+ .chat-form{flex-wrap:wrap}
+ .chat-form textarea{flex-basis:100%}
+ .project-modal{padding:18px}
+}
+
+/* SOURCE CODE VIEWER + DEMO */
+.project-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.project-actions .btn{font-size:.92rem}
+.source-modal{width:min(900px,94%);max-height:90vh;overflow:auto;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:22px}
+.source-modal::backdrop{background:rgb(0 0 0 / 78%);backdrop-filter:blur(5px)}
+.source-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:16px 0}
+.source-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.source-tab{border:1px solid var(--line);background:#0b1119;color:var(--muted);padding:8px 12px;border-radius:9px}
+.source-tab.active{background:var(--lime);color:#10140a;border-color:var(--lime);font-weight:bold}
+.source-view{background:#070b11;border:1px solid var(--line);border-radius:12px;overflow:auto;max-height:55vh}
+.source-view pre{margin:0;padding:18px;white-space:pre;min-width:max-content;color:#b9f7d5;font:13px/1.65 Consolas,Monaco,monospace}
+.source-note{background:#151e29;border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--muted);margin:12px 0}
+.guide-list{padding-left:22px;color:var(--muted)}
+.guide-list li{margin:7px 0}
+.demo-frame{width:100%;min-height:300px;border:1px solid var(--line);border-radius:12px;background:#fff}
+@media(max-width:760px){.source-modal{padding:15px}.source-view pre{font-size:12px}}
+
+
+.profile-photo{overflow:hidden;position:relative;isolation:isolate}
+.profile-photo::after{content:"";position:absolute;inset:0;border:1px solid #c6f36a66;border-radius:inherit;pointer-events:none}
+.profile-photo img{display:block;width:100%;height:100%;min-height:320px;max-height:460px;object-fit:cover;object-position:center 35%;transition:transform .55s ease,filter .55s ease}
+.photo-card:hover .profile-photo img{transform:scale(1.035);filter:saturate(1.08)}
+.page{animation:pageIn .38s ease both}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card,.project-card,.contact-item{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.card:hover,.project-card:hover,.contact-item:hover{transform:translateY(-4px);border-color:#70e5e288;box-shadow:0 12px 35px #0003}
+#backToTop{position:fixed;right:20px;bottom:20px;z-index:20;width:44px;height:44px;border:1px solid var(--line);border-radius:14px;background:#111722ee;color:var(--lime);font-size:1.2rem;opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}
+#backToTop.visible{opacity:1;visibility:visible;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<nav>
+<a href="#home" class="brand" data-page="home">IBNU<span>ZH.</span></a>
+<button class="menu-btn" id="menuBtn" aria-expanded="false">☰ Menu</button>
+<div class="navlinks" id="navlinks">
+<a href="#home" data-page="home" class="active">Beranda</a>
+<a href="#biodata" data-page="biodata">Biodata</a>
+<a href="#coding" data-page="coding">Coding</a>
+<a href="#ai" data-page="ai">AI</a>
+<a href="#ibnai" data-page="ibnai">IBN.AI</a>
+<a href="#projects" data-page="projects">Proyek</a>
+<a href="#game" data-page="game">Game</a>
+<a href="#contact" data-page="contact">Kontak</a>
+</div>
+</nav>
+</div>
+</header>
+
+<main class="wrap">
+<section class="page active" id="home">
+<div class="hero">
+<div>
+<div class="eyebrow">PERSONAL DIGITAL SPACE</div>
+<h1>Halo, saya<br><span>Ibnu Zaki</span><br>Hasan.</h1>
+<p class="lead">Pelajar SMK yang tertarik dengan coding, kecerdasan buatan, dan pembuatan website. Saya suka mengubah rasa penasaran menjadi proyek digital.</p>
+<div class="buttons">
+<button class="btn primary" data-go="biodata">Kenali saya ↗</button>
+<button class="btn" data-go="projects">Jelajahi proyek</button>
+</div>
+<div class="tags"><span class="tag">Python</span><span class="tag">Web Development</span><span class="tag">AI</span></div>
+</div>
+<div class="photo-card">
+<div class="photo-frame profile-photo"><img src="profile.jpg" alt="Foto profil Ibnu Zaki Hasan" loading="eager"></div>
+<p><b>Ibnu Zaki Hasan</b><br><span class="muted">Student · Coding enthusiast</span></p>
+</div>
+</div>
+</section>
+
+<section class="page" id="biodata">
+<div class="section-head"><div class="eyebrow">01 / TENTANG SAYA</div><h2>Biodata diri</h2><p>Perkenalan singkat tentang diri dan pendidikan.</p></div>
+<div class="grid">
+<article class="card"><h3>👋 Halo, kenalan yuk!</h3><p>Nama saya Ibnu Zaki Hasan. Saya pelajar yang tertarik dengan teknologi. Saya sedang mempelajari coding dan AI serta senang mencoba membuat aplikasi dan website sendiri.</p></article>
+<article class="card"><h3>Data pribadi</h3><div class="bio-list">
+<div class="bio-item"><small>Nama lengkap</small><b>Ibnu Zaki Hasan</b></div>
+<div class="bio-item"><small>Tempat, tanggal lahir</small><b>Depok, 15 Oktober 2010</b></div>
+<div class="bio-item"><small>Asal sekolah</small><b>MTsN Kota Depok</b></div>
+<div class="bio-item"><small>Sekolah sekarang</small><b>SMK Tunas Bangsa (DECES)</b></div>
+<div class="bio-item"><small>Hobi</small><b>Bermain game &amp; mendengar musik</b></div>
+<div class="bio-item"><small>Minat</small><b>Coding, AI, aplikasi, website</b></div>
+</div></article>
+</div>
+<div class="callout"><b>🎯 Tujuan saya:</b> terus belajar dan membuat proyek teknologi yang bermanfaat.</div>
+</section>
+
+<section class="page" id="coding">
+<div class="section-head"><div class="eyebrow">02 / CODING CORNER</div><h2>Kenalan dengan coding</h2><p>Coding adalah proses menulis instruksi agar komputer menjalankan tugas. Coding digunakan untuk membuat program, aplikasi, game, dan website.</p></div>
+<div class="grid three">
+<article class="card"><h3>🐍 Python</h3><p>Bahasa pemrograman untuk pemula, otomatisasi, analisis data, AI, dan computer vision.</p></article>
+<article class="card"><h3>🌐 HTML, CSS &amp; JavaScript</h3><p>HTML membentuk struktur, CSS mengatur tampilan, dan JavaScript menambahkan interaksi.</p></article>
+<article class="card"><h3>🧩 Debugging</h3><p>Mencari penyebab error, menguji solusi, dan memperbaiki kode.</p></article>
+</div>
+<div class="card" style="margin-top:15px"><h3>Contoh kode Python</h3><pre class="code">nama = "Ibnu"
+print("Halo,", nama)
+print("Selamat belajar coding!")</pre></div>
+</section>
+
+<section class="page" id="ai">
+<div class="section-head"><div class="eyebrow">03 / ARTIFICIAL INTELLIGENCE</div><h2>AI: alat bantu, bukan pengganti pikiran.</h2><p>AI membantu komputer mengenali pola, memahami bahasa, menganalisis informasi, dan menghasilkan konten.</p></div>
+<div class="grid">
+<article class="card"><h3>✨ Manfaat AI</h3><p>Membantu belajar, mencari ide, merangkum informasi, menerjemahkan bahasa, dan memperbaiki kode.</p></article>
+<article class="card"><h3>🛡️ Risiko AI</h3><p>AI bisa salah memberi informasi, menghasilkan konten palsu, menimbulkan masalah privasi, dan membuat pengguna terlalu bergantung.</p></article>
+</div>
+<div class="callout"><b>⚠️ Gunakan AI dengan bijak.</b><br>Jangan memasukkan kata sandi atau data rahasia. Periksa informasi penting dari sumber tepercaya.</div>
+</section>
+
+<section class="page" id="ibnai">
+<div class="section-head"><div class="eyebrow">04 / YOUR FRIENDLY AI</div><h2>Kenalan dengan <span style="color:var(--lime)">IBN.AI</span></h2><p>Asisten virtual untuk membantu pertanyaan tentang coding, AI, pelajaran, ide website, dan topik umum.</p></div>
+<div class="chat-shell">
+<div class="chat-head"><div class="ai-avatar">IB</div><div><b>IBN.AI</b><div class="muted">Asisten digital · santai tapi sopan</div></div></div>
+<div class="chat-messages" id="chatMessages" aria-live="polite">
+<div class="bubble-row"><div class="bubble bot-bubble">Halo! 👋 Saya IBN.AI. Ada yang bisa saya bantu hari ini?</div></div>
+</div>
+<div class="chat-suggestions">
+<button class="suggestion" data-prompt="Jelaskan Python untuk pemula">Belajar Python</button>
+<button class="suggestion" data-prompt="Apa manfaat dan risiko AI?">Manfaat AI</button>
+<button class="suggestion" data-prompt="Berikan ide website keren untuk pemula">Ide website</button>
+</div>
+<form id="chatForm" class="chat-form">
+<textarea id="chatInput" rows="1" maxlength="2000" placeholder="Tulis pertanyaan Anda..." required></textarea>
+<button class="btn primary" type="submit" id="sendChat">Kirim ↗</button>
+</form>
+<div class="chat-foot" id="chatFoot">Mode demo aktif. AI sungguhan memerlukan backend dan API key.</div>
+</div>
+</section>
+
+<section class="page" id="projects">
+<div class="section-head"><div class="eyebrow">05 / PROJECT LAB</div><h2>Project <span style="color:var(--lime)">Showcase.</span></h2><p>Kumpulan eksperimen, karya, dan perjalanan saya dalam mempelajari teknologi.</p></div>
+<div class="project-filters" id="projectFilters" aria-label="Filter project">
+<button class="project-filter active" data-filter="all" aria-pressed="true">Semua</button>
+<button class="project-filter" data-filter="python" aria-pressed="false">Python</button>
+<button class="project-filter" data-filter="web" aria-pressed="false">Web</button>
+<button class="project-filter" data-filter="ai" aria-pressed="false">AI / Vision</button>
+</div>
+<div class="grid" id="projectGrid">
+<article class="card project-card" data-category="python ai" data-title="AI Hand Recognition Voice" data-description="Program pengenalan gestur tangan melalui webcam yang menghubungkan gerakan tangan dengan keluaran suara bahasa Indonesia." data-tech="Python, OpenCV, MediaPipe, Windows Speech" data-status="Prototipe">
+<div class="project-icon">🖐️</div><div class="eyebrow">PYTHON · COMPUTER VISION</div><h3>AI Hand Recognition Voice</h3><p>Mengenali gestur tangan melalui webcam dan menghasilkan suara sesuai gestur.</p><div class="tags"><span class="tag">Python</span><span class="tag">MediaPipe</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+<article class="card project-card" data-category="python ai" data-title="3D Hand Tracking" data-description="Eksperimen pelacakan tangan secara real-time untuk membuat efek visual neon dan energi interaktif." data-tech="Python, OpenCV, MediaPipe" data-status="Dalam pengembangan">
+<div class="project-icon">⚡</div><div class="eyebrow">PYTHON · VISUAL EFFECTS</div><h3>3D Hand Tracking</h3><p>Eksperimen pelacakan gerakan tangan dan efek visual neon interaktif.</p><div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+<article class="card project-card" data-category="python" data-title="Python Math Programs" data-description="Kumpulan program matematika dasar untuk melatih logika pemrograman, input, perhitungan, dan output." data-tech="Python, Basic Programming" data-status="Latihan belajar">
+<div class="project-icon">📐</div><div class="eyebrow">PYTHON · FUNDAMENTALS</div><h3>Python Math Programs</h3><p>Program menghitung luas segitiga dan persegi panjang.</p><div class="tags"><span class="tag">Python</span><span class="tag">Logika</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+<article class="card project-card" data-category="web" data-title="Birthday Greeting Website" data-description="Website ucapan ulang tahun interaktif dengan animasi kue, hadiah yang dapat dibuka, pesan, dan doa." data-tech="HTML, CSS, JavaScript" data-status="Eksperimen">
+<div class="project-icon">🎂</div><div class="eyebrow">WEB · INTERACTIVE</div><h3>Birthday Greeting Website</h3><p>Website ucapan ulang tahun dengan hadiah dan pesan interaktif.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+<article class="card project-card" data-category="python" data-title="Lyrics Visualizer" data-description="Eksperimen animasi lirik yang ditampilkan mengikuti urutan dan jeda waktu musik." data-tech="Python, Animation, Timing" data-status="Dalam pengembangan">
+<div class="project-icon">🎵</div><div class="eyebrow">PYTHON · ANIMATION</div><h3>Lyrics Visualizer</h3><p>Eksperimen animasi teks dengan pengaturan waktu mengikuti musik.</p><div class="tags"><span class="tag">Python</span><span class="tag">Timing</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+<article class="card project-card" data-category="python ai" data-title="Hand Gesture Particle Universe" data-description="Animasi partikel interaktif yang membentuk galaksi, tulisan I LOVE YOU, planet Saturnus, dan hati berdasarkan gestur tangan melalui webcam." data-tech="Python, OpenCV, MediaPipe, NumPy" data-status="Prototipe">
+<div class="project-icon">🌌</div><div class="eyebrow">PYTHON · HAND GESTURE ANIMATION</div><h3>Hand Gesture Particle Universe</h3><p>Partikel membentuk GALAXY, I LOVE YOU, Saturnus, dan ♥️ dengan gerakan tangan.</p><div class="tags"><span class="tag">Python</span><span class="tag">MediaPipe</span><span class="tag">Particles</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+<article class="card project-card" data-category="web ai" data-title="IBN.AI" data-description="Konsep asisten virtual untuk membantu menjawab pertanyaan, menjelaskan coding, dan mendukung proses belajar. Mode AI penuh memerlukan backend yang terhubung ke model AI." data-tech="HTML, CSS, JavaScript, API" data-status="Prototipe">
+<div class="project-icon">✦</div><div class="eyebrow">WEB · ARTIFICIAL INTELLIGENCE</div><h3>IBN.AI</h3><p>Konsep asisten virtual untuk belajar teknologi dan menjawab pertanyaan.</p><div class="tags"><span class="tag">Web</span><span class="tag">AI</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+<article class="card project-card" data-category="web" data-title="Personal Portfolio" data-description="Website pribadi untuk memperkenalkan diri, menampilkan karya, dan mendokumentasikan perjalanan belajar teknologi." data-tech="HTML, CSS, JavaScript" data-status="Dalam pengembangan">
+<div class="project-icon">🖥️</div><div class="eyebrow">WEB · PERSONAL BRAND</div><h3>Personal Portfolio</h3><p>Website pribadi untuk menampilkan profil dan karya digital.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div><div class="project-actions"><button class="btn project-detail" type="button">Detail &amp; Kode ↗</button></div>
+</article>
+</div>
+<p class="muted" id="projectCount" aria-live="polite">7 project ditampilkan</p>
+<div class="callout"><b>Punya ide project?</b><br>Setiap project dimulai dari rasa penasaran, eksperimen, dan kemauan untuk belajar.<div class="buttons"><button class="btn primary" data-go="contact">Hubungi Saya ↗</button></div></div>
+</section>
+
+<dialog id="projectModal" class="source-modal" aria-labelledby="modalTitle">
+<div class="modal-head">
+  <div><div class="eyebrow">PROJECT LAB / SOURCE VIEWER</div><h2 id="modalTitle"></h2></div>
+  <button class="btn" id="closeProjectModal" type="button" aria-label="Tutup detail">✕</button>
+</div>
+<p id="modalDescription"></p>
+<div class="bio-list">
+  <div class="bio-item"><small>Teknologi</small><b id="modalTech"></b></div>
+  <div class="bio-item"><small>Status</small><b id="modalStatus"></b></div>
+</div>
+<div class="source-toolbar">
+  <div class="source-tabs" role="tablist" aria-label="Tampilan proyek">
+    <button class="source-tab active" data-view="code" type="button">Source Code</button>
+    <button class="source-tab" data-view="guide" type="button">Panduan Menjalankan</button>
+    <button class="source-tab" data-view="demo" type="button">Demo</button>
+  </div>
+  <button class="btn primary" id="copySource" type="button">Copy Code</button>
+</div>
+<div id="sourceNote" class="source-note"></div>
+<div id="sourcePanel" class="source-view"><pre><code id="sourceCode"></code></pre></div>
+<div id="guidePanel" hidden>
+  <ol class="guide-list" id="guideList"></ol>
+</div>
+<div id="demoPanel" hidden>
+  <div class="source-note" id="demoNote"></div>
+  <div id="demoContent"></div>
+</div>
+<div class="buttons"><button class="btn" id="modalDone" type="button">Tutup</button></div>
+</dialog>
+
+<section class="page" id="game">
+<div class="section-head"><div class="eyebrow">06 / PLAY ZONE</div><h2>Mini game: Lawan Bot</h2><p>Anda menggunakan X, bot menggunakan O. Coba menang melawan komputer!</p></div>
+<div class="gamebox"><b>🧠 Anda (X) vs IBN Bot (O)</b><p id="gameStatus" class="muted">Giliran Anda</p><div class="game-grid" id="gameGrid"></div><button class="btn primary" id="resetGame" type="button">Ulangi game ↻</button></div>
+</section>
+
+<section class="page" id="contact">
+<div class="section-head"><div class="eyebrow">07 / KONTAK</div><h2>Terhubung dengan Ibnu</h2></div>
+<div class="grid">
+<a class="contact-item" href="mailto:ibnuzakihasan@gmail.com"><small>Email</small><b>ibnuzakihasan@gmail.com ↗</b></a>
+<a class="contact-item" href="https://instagram.com/ibuz_hsn" target="_blank" rel="noopener noreferrer"><small>Instagram</small><b>@ibuz_hsn ↗</b></a>
+<div class="contact-item"><small>Nomor telepon</small><b>Nomor pribadi</b></div>
+<div class="contact-item"><small>Sekolah</small><b>SMK Tunas Bangsa (DECES)</b></div>
+</div>
+<div class="callout"><b>Catatan privasi:</b> hindari menampilkan nomor pribadi atau data sensitif di website publik.</div>
+</section>
+</main>
+
+<footer><div class="wrap">© <span id="year"></span> Ibnu Zaki Hasan · Made with curiosity ✦</div></footer>
+
+<button id="backToTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+const links=[...document.querySelectorAll('[data-page]')];
+const nav=document.getElementById('navlinks');
+const menuBtn=document.getElementById('menuBtn');
+
+function showPage(id){
+  if(!pages.some(p=>p.id===id)) id='home';
+  pages.forEach(p=>p.classList.toggle('active',p.id===id));
+  links.forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+  nav.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded','false');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+links.forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const id=a.dataset.page;
+  history.replaceState(null,'','#'+id);
+  showPage(id);
+}));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.go)));
+menuBtn.addEventListener('click',()=>{
+  const isOpen=nav.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded',String(isOpen));
+});
+window.addEventListener('hashchange',()=>showPage(location.hash.slice(1)||'home'));
+if(location.hash)showPage(location.hash.slice(1));
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// TIC-TAC-TOE: PEMAIN X MELAWAN BOT
+const grid=document.getElementById('gameGrid');
+const status=document.getElementById('gameStatus');
+let board=Array(9).fill('');
+let ended=false,busy=false;
+const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function winner(b){
+  for(const line of wins){if(b[line[0]]&&line.every(n=>b[n]===b[line[0]]))return b[line[0]];}
+  return b.every(Boolean)?'draw':null;
+}
+function render(){
+  grid.innerHTML='';
+  board.forEach((v,i)=>{
+    const b=document.createElement('button');
+    b.className='cell';b.textContent=v;b.disabled=!!v||ended||busy;
+    b.setAttribute('aria-label','Kotak '+(i+1));
+    b.addEventListener('click',()=>playerMove(i));grid.appendChild(b);
+  });
+}
+function minimax(b,isBot,depth=0){
+  const result=winner(b);
+  if(result==='O')return 10-depth;
+  if(result==='X')return depth-10;
+  if(result==='draw')return 0;
+  let best=isBot?-Infinity:Infinity;
+  for(let i=0;i<9;i++)if(!b[i]){
+    b[i]=isBot?'O':'X';const score=minimax(b,!isBot,depth+1);b[i]='';
+    best=isBot?Math.max(best,score):Math.min(best,score);
+  }
+  return best;
+}
+function finishIfNeeded(){
+  const result=winner(board);if(!result)return false;ended=true;
+  if(result==='X')status.textContent='🔥 Mantap, Anda menang lawan bot!';
+  else if(result==='O')status.textContent='🤖 IBN Bot menang. Coba lagi!';
+  else status.textContent='🤝 Seri! Coba pertandingan baru.';
+  render();return true;
+}
+function botMove(){
+  status.textContent='🤖 IBN Bot sedang berpikir...';
+  setTimeout(()=>{
+    let best=-Infinity,choices=[];
+    for(let i=0;i<9;i++)if(!board[i]){
+      board[i]='O';const score=minimax(board,false);board[i]='';
+      if(score>best){best=score;choices=[i];}else if(score===best)choices.push(i);
+    }
+    if(choices.length)board[choices[Math.floor(Math.random()*choices.length)]]='O';
+    busy=false;if(!finishIfNeeded())status.textContent='Giliran Anda (X)';render();
+  },350);
+}
+function playerMove(i){
+  if(ended||busy||board[i])return;
+  board[i]='X';if(!finishIfNeeded()){busy=true;render();botMove();}
+}
+document.getElementById('resetGame').addEventListener('click',()=>{
+  board=Array(9).fill('');ended=false;busy=false;status.textContent='Giliran Anda (X)';render();
+});
+render();
+
+// IBN.AI — MODE DEMO. AI sungguhan memerlukan backend dan API key aman di server.
+const chatForm=document.getElementById('chatForm');
+const chatInput=document.getElementById('chatInput');
+const chatMessages=document.getElementById('chatMessages');
+const chatFoot=document.getElementById('chatFoot');
+const sendChat=document.getElementById('sendChat');
+const chatHistory=[];
+function addBubble(text,who){
+  const row=document.createElement('div');row.className='bubble-row '+(who==='user'?'user-row':'bot-row');
+  const bubble=document.createElement('div');bubble.className='bubble '+(who==='user'?'user-bubble':'bot-bubble');
+  bubble.textContent=text;row.appendChild(bubble);chatMessages.appendChild(row);chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+function demoReply(message){
+  const m=message.toLowerCase();
+  if(/halo|hai|hi|hey|pagi|siang|malam/.test(m))return 'Halo! Ada yang bisa saya bantu hari ini?';
+  if(/python|coding|program|error|html|css|javascript|vscode/.test(m))return 'Saya dapat membantu menjelaskan konsep coding dan debugging. Silakan kirim pertanyaan atau potongan kode yang ingin diperiksa. Catatan: saat ini IBN.AI masih berjalan dalam mode demo.';
+  if(/ai|kecerdasan buatan|artificial intelligence/.test(m))return 'AI membantu komputer mengenali pola dan menghasilkan jawaban atau konten. Hasilnya tetap perlu diperiksa karena AI dapat memberikan informasi yang keliru.';
+  if(/website|web|portofolio|portfolio/.test(m))return 'Website biasanya menggunakan HTML untuk struktur, CSS untuk tampilan, dan JavaScript untuk interaksi. Setelah itu, website dapat dipublikasikan melalui layanan hosting.';
+  if(/makasih|terima kasih|thanks/.test(m))return 'Sama-sama! Senang bisa membantu.';
+  return 'Pertanyaan yang menarik. Chat ini masih dalam mode demo dengan jawaban terbatas. Agar IBN.AI dapat menjawab topik yang lebih luas, hubungkan frontend ini ke backend yang menggunakan model AI dan simpan API key dengan aman di server.';
+}
+async function sendMessage(message){
+  const clean=message.trim();if(!clean)return;
+  addBubble(clean,'user');chatInput.value='';sendChat.disabled=true;sendChat.textContent='...';
+  chatFoot.textContent='IBN.AI sedang menyusun jawaban...';
+  try{
+    const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:clean,history:chatHistory.slice(-8)})});
+    if(!response.ok)throw new Error('API belum tersedia');
+    const data=await response.json();if(data.error)throw new Error(data.error);
+    const answer=data.reply||'Maaf, silakan coba pertanyaan lain.';
+    addBubble(answer,'bot');chatHistory.push({role:'user',content:clean},{role:'assistant',content:answer});
+    chatFoot.textContent='IBN.AI terhubung ke AI.';
+  }catch(e){
+    addBubble(demoReply(clean),'bot');chatFoot.textContent='Mode demo aktif. AI penuh memerlukan backend dan API key.';
+  }finally{sendChat.disabled=false;sendChat.textContent='Kirim ↗';chatInput.focus();}
+}
+chatForm.addEventListener('submit',e=>{e.preventDefault();sendMessage(chatInput.value);});
+document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.prompt)));
+
+// PROJECT SHOWCASE: FILTER, SOURCE CODE, PANDUAN, DAN DEMO
+const projectCards=[...document.querySelectorAll('.project-card')];
+const projectFilters=[...document.querySelectorAll('.project-filter')];
+const projectCount=document.getElementById('projectCount');
+const projectModal=document.getElementById('projectModal');
+const sourceCodeEl=document.getElementById('sourceCode');
+const sourceNote=document.getElementById('sourceNote');
+const sourcePanel=document.getElementById('sourcePanel');
+const guidePanel=document.getElementById('guidePanel');
+const demoPanel=document.getElementById('demoPanel');
+const guideList=document.getElementById('guideList');
+const demoNote=document.getElementById('demoNote');
+const demoContent=document.getElementById('demoContent');
+let activeProject=null;
+let activeView='code';
+
+// These are illustrative starter snippets, not claimed to be the user's original full project files.
+// Replace each entry with the exact source code of the finished project when available.
+const projectSources={
+  'Python Math Programs': {
+    language:'python',
+    source:`# Program menghitung luas segitiga\nalas = float(input("Masukkan alas: "))\ntinggi = float(input("Masukkan tinggi: "))\nluas_segitiga = 0.5 * alas * tinggi\nprint(f"Luas segitiga adalah: {luas_segitiga}")\n\n# Program menghitung luas persegi panjang\npanjang = float(input("Masukkan panjang: "))\nlebar = float(input("Masukkan lebar: "))\nluas_persegi_panjang = panjang * lebar\nprint(f"Luas persegi panjang adalah: {luas_persegi_panjang}")`,
+    note:'Contoh kode latihan yang sesuai dengan topik proyek ini. Ini bukan gabungan source code asli dari semua file latihan Anda.',
+    guide:['Pastikan Python sudah terpasang di laptop.','Simpan kode sebagai math_programs.py.','Buka terminal VS Code pada folder file tersebut.','Jalankan perintah: python math_programs.py','Masukkan angka saat program meminta input.']
+  },
+  'AI Hand Recognition Voice': {
+    language:'python',
+    source:`import cv2
+import mediapipe as mp
+import threading
+import queue
+import time
+import os
+import tempfile
+import pygame
+from gtts import gTTS
+
+# =====================================
+# SISTEM SUARA GOOGLE TTS INDONESIA
+# =====================================
+
+speech_queue = queue.Queue()
+
+pygame.mixer.init()
+
+def voice_worker():
+    while True:
+        message = speech_queue.get()
+
+        if message is None:
+            speech_queue.task_done()
+            break
+
+        audio_path = None
+
+        try:
+            # Buat audio bahasa Indonesia
+            with tempfile.NamedTemporaryFile(
+                suffix=".mp3",
+                delete=False
+            ) as temp_audio:
+                audio_path = temp_audio.name
+
+            tts = gTTS(
+                text=message,
+                lang="id",
+                slow=False
+            )
+            tts.save(audio_path)
+
+            # Putar audio tanpa membuka Media Player
+            pygame.mixer.music.load(audio_path)
+            pygame.mixer.music.play()
+
+            while pygame.mixer.music.get_busy():
+                time.sleep(0.05)
+
+            pygame.mixer.music.unload()
+
+        except Exception as error:
+            print("Error suara:", error)
+
+        finally:
+            if audio_path and os.path.exists(audio_path):
+                try:
+                    os.remove(audio_path)
+                except OSError:
+                    pass
+
+            speech_queue.task_done()
+
+
+threading.Thread(
+    target=voice_worker,
+    daemon=True
+).start()
+
+
+# =====================================
+# KAMERA DAN MEDIAPIPE
+# =====================================
+
+mp_hands = mp.solutions.hands
+mp_draw = mp.solutions.drawing_utils
+
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+if not cap.isOpened():
+    print("Kamera tidak bisa dibuka!")
+    speech_queue.put(None)
+    raise SystemExit
+
+
+# =====================================
+# KALIMAT UNTUK SETIAP GESTUR
+# =====================================
+
+gestures = {
+    "OPEN": "Perkenalkan!",
+    "ONE": "Nama saya.",
+    "PEACE": "Ibnu.",
+    "FIST": "Terima kasih!"
+}
+
+
+# =====================================
+# DETEKSI GESTUR TANGAN
+# =====================================
+
+def recognize_gesture(hand):
+    lm = hand.landmark
+
+    index = lm[8].y < lm[6].y
+    middle = lm[12].y < lm[10].y
+    ring = lm[16].y < lm[14].y
+    pinky = lm[20].y < lm[18].y
+
+    thumb = abs(lm[4].x - lm[2].x) > 0.06
+
+    if thumb and index and middle and ring and pinky:
+        return "OPEN"
+
+    if index and not middle and not ring and not pinky:
+        return "ONE"
+
+    if index and middle and not ring and not pinky:
+        return "PEACE"
+
+    if not index and not middle and not ring and not pinky:
+        return "FIST"
+
+    return None
+
+
+# =====================================
+# PENGATURAN PEMICU SUARA
+# =====================================
+
+candidate_gesture = None
+candidate_since = time.time()
+last_spoken_gesture = None
+
+STABLE_TIME = 0.35
+
+
+# =====================================
+# PROGRAM UTAMA
+# =====================================
+
+try:
+    with mp_hands.Hands(
+        static_image_mode=False,
+        max_num_hands=1,
+        model_complexity=1,
+        min_detection_confidence=0.7,
+        min_tracking_confidence=0.6
+    ) as hands:
+
+        while True:
+            success, frame = cap.read()
+
+            if not success:
+                print("Gagal membaca kamera!")
+                break
+
+            frame = cv2.flip(frame, 1)
+
+            rgb = cv2.cvtColor(
+                frame,
+                cv2.COLOR_BGR2RGB
+            )
+
+            results = hands.process(rgb)
+            gesture = None
+
+            if results.multi_hand_landmarks:
+                hand = results.multi_hand_landmarks[0]
+
+                mp_draw.draw_landmarks(
+                    frame,
+                    hand,
+                    mp_hands.HAND_CONNECTIONS
+                )
+
+                gesture = recognize_gesture(hand)
+
+            now = time.time()
+
+            if gesture != candidate_gesture:
+                candidate_gesture = gesture
+                candidate_since = now
+
+            stable_gesture = None
+
+            if (
+                candidate_gesture is not None
+                and now - candidate_since >= STABLE_TIME
+            ):
+                stable_gesture = candidate_gesture
+
+            if stable_gesture is None:
+                last_spoken_gesture = None
+
+            elif stable_gesture != last_spoken_gesture:
+                if speech_queue.empty():
+                    message = gestures[stable_gesture]
+                    speech_queue.put(message)
+
+                    last_spoken_gesture = stable_gesture
+                    print("Mengucapkan:", message)
+
+            label = (
+                gestures[stable_gesture]
+                if stable_gesture is not None
+                else "Tunjukkan gestur tangan"
+            )
+
+            cv2.putText(
+                frame,
+                "AI HAND RECOGNITION",
+                (20, 35),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (0, 255, 255),
+                2
+            )
+
+            cv2.putText(
+                frame,
+                label,
+                (20, 75),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.8,
+                (0, 255, 0),
+                2
+            )
+
+            cv2.putText(
+                frame,
+                "Tekan Q untuk keluar",
+                (20, 110),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.55,
+                (255, 255, 255),
+                1
+            )
+
+            cv2.imshow(
+                "AI Hand Recognition",
+                frame
+            )
+
+            if cv2.waitKey(1) & 0xFF == ord("q"):
+                break
+
+finally:
+    cap.release()
+    cv2.destroyAllWindows()
+
+    speech_queue.put(None)
+    speech_queue.join()
+
+    pygame.mixer.quit()`,
+    note:'Source code asli hand_ai.py yang diberikan sudah dimasukkan. Program menggunakan webcam, MediaPipe/OpenCV, Google Text-to-Speech bahasa Indonesia, dan pygame untuk pemutaran audio.',
+    guide:['Gunakan Python 3.12 dan buka terminal VS Code pada folder project.','Instal dependensi: python -m pip install opencv-python mediapipe pygame gTTS.','Simpan kode sebagai hand_ai.py.','Jalankan dengan: python hand_ai.py.','Pastikan internet aktif karena gTTS memerlukan koneksi untuk membuat audio, dan pastikan webcam tidak sedang dipakai aplikasi lain.','Untuk keluar dari jendela kamera, tekan tombol Q.']
+  },
+  '3D Hand Tracking': {
+    language:'python',
+    source:"import cv2\nimport mediapipe as mp\nimport numpy as np\nimport colorsys\nimport time\n\n# ============================================================\n# FULL 3D-LOOK HAND TRACKING - WEBCAM LAPTOP\n# Library: OpenCV + MediaPipe + NumPy\n# Controls:\n#   Q / ESC = quit\n#   F       = toggle fullscreen\n#   C       = change color mode\n# ============================================================\n\nCAMERA_INDEX = 0\nWIDTH = 1280\nHEIGHT = 720\nMAX_HANDS = 2\n\nmp_hands = mp.solutions.hands\nmp_draw = mp.solutions.drawing_utils\n\n# Landmark connections used by MediaPipe\nHAND_CONNECTIONS = list(mp_hands.HAND_CONNECTIONS)\n\ncolor_mode = 0\nfullscreen = False\nwindow_name = \"NEON 3D HAND TRACKING\"\n\ndef hsv_color(hue, saturation=0.95, value=1.0):\n    \"\"\"Return OpenCV BGR color from HSV values.\"\"\"\n    r, g, b = colorsys.hsv_to_rgb(hue % 1.0, saturation, value)\n    return (int(b * 255), int(g * 255), int(r * 255))\n\ndef draw_glowing_line(image, p1, p2, color, thickness=2):\n    \"\"\"Draw a soft glow plus a sharp neon line.\"\"\"\n    cv2.line(image, p1, p2, color, thickness + 5, cv2.LINE_AA)\n    cv2.line(image, p1, p2, (min(color[0] + 40, 255),\n                             min(color[1] + 40, 255),\n                             min(color[2] + 40, 255)),\n             thickness, cv2.LINE_AA)\n\ndef draw_hand_mesh(frame, hand_landmarks, width, height, t, hand_index):\n    # Convert normalized landmarks into pixel coordinates.\n    points = []\n    depths = []\n    for lm in hand_landmarks.landmark:\n        x = int(lm.x * width)\n        y = int(lm.y * height)\n        points.append((x, y))\n        depths.append(lm.z)\n\n    # Estimate depth range and create a small pseudo-3D offset.\n    # MediaPipe z is relative depth, not a true 3D render.\n    z_min = min(depths)\n    z_max = max(depths)\n    z_range = max(z_max - z_min, 1e-5)\n    projected = []\n    for (x, y), z in zip(points, depths):\n        depth_factor = (z - z_min) / z_range\n        projected.append((int(x + (depth_factor - 0.5) * 24),\n                          int(y - (depth_factor - 0.5) * 18)))\n\n    # Use a convex hull to keep colored triangles around the hand.\n    pts_np = np.array(projected, dtype=np.int32)\n    hull = cv2.convexHull(pts_np)\n    mask = np.zeros((height, width), dtype=np.uint8)\n    cv2.fillConvexPoly(mask, hull, 255)\n\n    # Delaunay triangulation makes a colorful triangular surface.\n    subdiv = cv2.Subdiv2D((0, 0, width, height))\n    valid_points = []\n    for p in projected:\n        x = min(max(p[0], 1), width - 2)\n        y = min(max(p[1], 1), height - 2)\n        valid_points.append((x, y))\n        try:\n            subdiv.insert((float(x), float(y)))\n        except cv2.error:\n            pass\n\n    triangle_list = subdiv.getTriangleList()\n    overlay = frame.copy()\n    base_hue = (t * 0.10 + hand_index * 0.36) % 1.0 if color_mode == 0 else (0.52 + hand_index * 0.18) % 1.0\n\n    for tri in triangle_list:\n        coords = np.array([\n            [int(tri[0]), int(tri[1])],\n            [int(tri[2]), int(tri[3])],\n            [int(tri[4]), int(tri[5])]\n        ], dtype=np.int32)\n\n        # Ignore triangles that go outside the image or outside the hand area.\n        if np.any(coords[:, 0] < 0) or np.any(coords[:, 0] >= width):\n            continue\n        if np.any(coords[:, 1] < 0) or np.any(coords[:, 1] >= height):\n            continue\n        center = tuple(np.mean(coords, axis=0).astype(int))\n        if mask[center[1], center[0]] == 0:\n            continue\n\n        hue = (base_hue + (center[0] / max(width, 1)) * 0.28\n               + (center[1] / max(height, 1)) * 0.12 + t * 0.035) % 1.0\n        color = hsv_color(hue)\n        cv2.fillConvexPoly(overlay, coords, color, cv2.LINE_AA)\n        cv2.polylines(overlay, [coords], True, (230, 255, 255), 1, cv2.LINE_AA)\n\n    # Blend translucent color triangles over the webcam image.\n    cv2.addWeighted(overlay, 0.43, frame, 0.57, 0, frame)\n\n    # Add larger geometric connections for a stronger 3D wireframe look.\n    for connection_index, (start, end) in enumerate(HAND_CONNECTIONS):\n        p1, p2 = projected[start], projected[end]\n        hue = (base_hue + connection_index * 0.035 + t * 0.04) % 1.0\n        draw_glowing_line(frame, p1, p2, hsv_color(hue), 2)\n\n    # Extra cross-links over the palm create the triangular mesh.\n    palm_links = [\n        (0, 5), (0, 9), (0, 13), (0, 17),\n        (5, 9), (9, 13), (13, 17),\n        (5, 13), (9, 17), (5, 17),\n        (2, 5), (3, 9), (4, 9),\n        (6, 9), (7, 13), (8, 13),\n        (10, 13), (11, 17), (12, 17),\n        (14, 17), (15, 0), (16, 0),\n    ]\n    for i, (a, b) in enumerate(palm_links):\n        hue = (base_hue + i * 0.045 + t * 0.05) % 1.0\n        draw_glowing_line(frame, projected[a], projected[b], hsv_color(hue), 1)\n\n    # Neon landmark dots with a white center.\n    for i, p in enumerate(projected):\n        hue = (base_hue + i / 21.0 + t * 0.05) % 1.0\n        color = hsv_color(hue)\n        cv2.circle(frame, p, 8, color, -1, cv2.LINE_AA)\n        cv2.circle(frame, p, 3, (255, 255, 255), -1, cv2.LINE_AA)\n\ndef main():\n    global color_mode, fullscreen\n\n    cap = cv2.VideoCapture(CAMERA_INDEX)\n    cap.set(cv2.CAP_PROP_FRAME_WIDTH, WIDTH)\n    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, HEIGHT)\n\n    if not cap.isOpened():\n        print(\"ERROR: Webcam tidak bisa dibuka.\")\n        print(\"Coba tutup aplikasi lain yang sedang memakai kamera, lalu jalankan lagi.\")\n        return\n\n    cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)\n    cv2.resizeWindow(window_name, 1100, 680)\n\n    start_time = time.time()\n    previous_time = start_time\n    fps = 0.0\n\n    with mp_hands.Hands(\n        static_image_mode=False,\n        max_num_hands=MAX_HANDS,\n        model_complexity=1,\n        min_detection_confidence=0.60,\n        min_tracking_confidence=0.55\n    ) as hands:\n        while True:\n            ok, frame = cap.read()\n            if not ok:\n                print(\"Gagal membaca frame dari webcam.\")\n                break\n\n            # Mirror view so movement feels natural.\n            frame = cv2.flip(frame, 1)\n            height, width = frame.shape[:2]\n\n            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\n            rgb.flags.writeable = False\n            results = hands.process(rgb)\n            rgb.flags.writeable = True\n\n            now = time.time()\n            elapsed = now - previous_time\n            if elapsed > 0:\n                instant_fps = 1.0 / elapsed\n                fps = instant_fps if fps == 0 else fps * 0.90 + instant_fps * 0.10\n            previous_time = now\n            t = now - start_time\n\n            if results.multi_hand_landmarks:\n                for index, hand_landmarks in enumerate(results.multi_hand_landmarks):\n                    draw_hand_mesh(frame, hand_landmarks, width, height, t, index)\n\n            # Futuristic HUD.\n            cv2.rectangle(frame, (18, 18), (width - 18, 94), (12, 12, 22), -1)\n            cv2.rectangle(frame, (18, 18), (width - 18, 94), (255, 100, 40), 1)\n\n            hand_count = len(results.multi_hand_landmarks) if results.multi_hand_landmarks else 0\n            title = \"NEON 3D HAND TRACKING\"\n            status = f\"HANDS: {hand_count}   |   FPS: {fps:.0f}   |   MODE: {'RAINBOW' if color_mode == 0 else 'CYAN / PURPLE'}\"\n            cv2.putText(frame, title, (34, 48), cv2.FONT_HERSHEY_SIMPLEX,\n                        0.82, (255, 255, 255), 2, cv2.LINE_AA)\n            cv2.putText(frame, status, (35, 76), cv2.FONT_HERSHEY_SIMPLEX,\n                        0.48, (100, 240, 255), 1, cv2.LINE_AA)\n\n            if hand_count == 0:\n                cv2.putText(frame, \"SHOW YOUR HAND TO THE CAMERA\",\n                            (30, height - 35), cv2.FONT_HERSHEY_SIMPLEX,\n                            0.7, (220, 255, 255), 2, cv2.LINE_AA)\n\n            cv2.putText(frame, \"Q/ESC: QUIT   F: FULLSCREEN   C: CHANGE COLOR\",\n                        (22, height - 12), cv2.FONT_HERSHEY_SIMPLEX,\n                        0.43, (220, 220, 230), 1, cv2.LINE_AA)\n\n            cv2.imshow(window_name, frame)\n\n            key = cv2.waitKey(1) & 0xFF\n            if key == ord('q') or key == 27:\n                break\n            elif key == ord('c'):\n                color_mode = 1 - color_mode\n            elif key == ord('f'):\n                fullscreen = not fullscreen\n                cv2.setWindowProperty(\n                    window_name,\n                    cv2.WND_PROP_FULLSCREEN,\n                    cv2.WINDOW_FULLSCREEN if fullscreen else cv2.WINDOW_NORMAL\n                )\n\n    cap.release()\n    cv2.destroyAllWindows()\n\nif __name__ == \"__main__\":\n    main()\n",
+    note:'Source code asli hand_tracking_3d.py dari file yang tersedia sudah dimasukkan. Untuk menjalankannya, pastikan dependensi terpasang dan webcam tersedia.',
+    guide:['Pasang Python 3.12 dan dependensi yang digunakan proyek.','Pastikan OpenCV dan MediaPipe dapat diimpor tanpa error.','Simpan kode asli ke file proyek Anda, misalnya hand_tracking_3d.py.','Jalankan dengan: python hand_tracking_3d.py','Jika kamera tidak terbuka, tutup aplikasi lain yang memakai webcam.']
+  },
+  'Lyrics Visualizer': {
+    language:'python',
+    source:`# Source code lengkap Lyrics Visualizer belum dimasukkan.\n# Tempelkan file Python asli di sini.\n# Catatan: pastikan Anda menggunakan file audio milik sendiri\n# dan atur timestamp lirik sesuai durasi audio tersebut.`,
+    note:'Source code animasi lirik dan timing asli belum dimasukkan. Teks ini hanya penanda, bukan kode visualizer yang lengkap.',
+    guide:['Siapkan file Python dan audio yang Anda punya hak untuk gunakan.','Pasang pustaka yang digunakan kode asli.','Sesuaikan timestamp dengan audio yang dipakai.','Jalankan file dari terminal VS Code.','Uji timing beberapa kali karena durasi lirik bisa perlu disesuaikan.']
+  },
+  'Birthday Greeting Website': {
+    language:'html',
+    source:`<!-- Contoh awal halaman ucapan ulang tahun.\n     Ganti bagian ini dengan HTML/CSS/JS asli dari proyek Anda. -->\n<!doctype html>\n<html lang="id">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <title>Ucapan Ulang Tahun</title>\n  <style>\n    body { font-family: Arial, sans-serif; text-align: center; padding: 3rem; }\n    button { padding: .8rem 1.2rem; cursor: pointer; }\n  </style>\n</head>\n<body>\n  <h1>Selamat ulang tahun! 🎂</h1>\n  <p>Semoga sehat, bahagia, dan semua harapan baik tercapai.</p>\n  <button onclick="alert('Semoga harimu menyenangkan! 🎁')">Buka hadiah</button>\n</body>\n</html>`,
+    note:'Contoh starter sederhana agar pengunjung melihat bentuk source viewer. Ganti dengan file HTML asli agar isi kode yang dipublikasikan benar-benar sama dengan proyek Anda.',
+    guide:['Simpan source code lengkap sebagai index.html.','Buka file di browser untuk mencoba interaksinya.','Untuk demo online, unggah folder proyek ke layanan hosting statis.']
+  },
+  'Personal Portfolio': {
+    language:'html',
+    source:`<!-- Website portofolio ini adalah file HTML tunggal.\n     Untuk menampilkan source code lengkap, masukkan isi file HTML\n     portofolio yang ingin dipublikasikan ke entri ini. -->\n<!doctype html>\n<html lang="id">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <title>Personal Portfolio</title>\n</head>\n<body>\n  <h1>Portofolio Saya</h1>\n  <p>Perkenalan, karya, dan perjalanan belajar teknologi.</p>\n</body>\n</html>`,
+    note:'Contoh ringkas, bukan salinan lengkap website portofolio. Source lengkap file ini cukup panjang dan belum otomatis ditampilkan sebagai kode project tersendiri.',
+    guide:['Simpan file utama sebagai index.html.','Buka langsung di browser untuk pengujian lokal.','Jika dipublikasikan, jangan memasukkan API key atau data pribadi yang tidak ingin dilihat umum.']
+  },
+  'Hand Gesture Particle Universe': {
+    language:'python',
+    source:`import cv2
+import mediapipe as mp
+import numpy as np
+import random
+import math
+
+# =========================
+# PENGATURAN
+# =========================
+WIDTH, HEIGHT = 900, 650
+PARTICLE_COUNT = 1500
+
+mp_hands = mp.solutions.hands
+mp_draw = mp.solutions.drawing_utils
+
+rng = np.random.default_rng()
+
+COLORS = {
+    "GALAXY": (255, 180, 80),
+    "LOVE": (200, 100, 255),
+    "ORB": (100, 190, 255),
+    "HEART": (100, 100, 255),
+}
+
+
+# =========================
+# MASK MENJADI PARTIKEL
+# =========================
+def mask_points(mask, count):
+    ys, xs = np.where(mask > 0)
+
+    if len(xs) == 0:
+        return rng.uniform(-1, 1, (count, 2)).astype(np.float32)
+
+    ids = rng.choice(
+        len(xs), count, replace=len(xs) < count
+    )
+
+    x = xs[ids].astype(np.float32)
+    y = ys[ids].astype(np.float32)
+
+    x = (x - mask.shape[1] / 2) / (mask.shape[1] / 2)
+    y = (y - mask.shape[0] / 2) / (mask.shape[0] / 2)
+
+    return np.column_stack((x, y)).astype(np.float32)
+
+
+# =========================
+# TULISAN I LOVE YOU
+# =========================
+def make_text_shape(text, count):
+    mask = np.zeros((220, 650), dtype=np.uint8)
+
+    cv2.putText(
+        mask, text, (18, 140),
+        cv2.FONT_HERSHEY_DUPLEX,
+        2.0, 255, 5, cv2.LINE_AA
+    )
+
+    return mask_points(mask, count)
+
+
+# =========================
+# BENTUK HATI
+# =========================
+def make_heart_shape(count):
+    mask = np.zeros((400, 400), dtype=np.uint8)
+    points = []
+
+    for i in range(300):
+        t = 2 * math.pi * i / 300
+
+        x = 16 * math.sin(t) ** 3
+        y = (
+            13 * math.cos(t)
+            - 5 * math.cos(2 * t)
+            - 2 * math.cos(3 * t)
+            - math.cos(4 * t)
+        )
+
+        points.append((
+            int(200 + x * 10),
+            int(190 - y * 10)
+        ))
+
+    cv2.fillPoly(
+        mask, [np.array(points, dtype=np.int32)], 255
+    )
+
+    return mask_points(mask, count)
+
+
+# =========================
+# PLANET SATURNUS
+# =========================
+def make_saturn_shape(count):
+    mask = np.zeros((400, 400), dtype=np.uint8)
+
+    # Badan planet
+    cv2.circle(mask, (200, 200), 85, 255, -1)
+
+    # Cincin planet
+    cv2.ellipse(
+        mask, (200, 200),
+        (175, 55), -25, 0, 360,
+        255, 8
+    )
+
+    cv2.ellipse(
+        mask, (200, 200),
+        (130, 35), -25, 0, 360,
+        255, 5
+    )
+
+    return mask_points(mask, count)
+
+
+# =========================
+# GALAKSI SPIRAL
+# =========================
+def make_galaxy_shape(count):
+    points = []
+
+    for _ in range(count):
+        arm = random.randint(0, 3)
+        radius = random.random() ** 0.65
+
+        angle = radius * 5.5 + arm * math.pi / 2
+        angle += random.gauss(0, 0.20)
+
+        x = math.cos(angle) * radius
+        y = math.sin(angle) * radius
+
+        x += random.gauss(0, 0.07)
+        y += random.gauss(0, 0.07)
+
+        points.append((x, y))
+
+    return np.array(points, dtype=np.float32)
+
+
+SHAPES = {
+    "GALAXY": make_galaxy_shape(PARTICLE_COUNT),
+    "LOVE": make_text_shape("I LOVE YOU", PARTICLE_COUNT),
+    "ORB": make_saturn_shape(PARTICLE_COUNT),
+    "HEART": make_heart_shape(PARTICLE_COUNT),
+}
+
+
+# =========================
+# DETEKSI GESTUR TANGAN
+# =========================
+def detect_gesture(hand):
+    lm = hand.landmark
+
+    # Deteksi jari yang terangkat
+    index_up = lm[8].y < lm[6].y
+    middle_up = lm[12].y < lm[10].y
+    ring_up = lm[16].y < lm[14].y
+    pinky_up = lm[20].y < lm[18].y
+
+    fingers = [
+        index_up, middle_up, ring_up, pinky_up
+    ]
+
+    count = sum(fingers)
+
+    # ✌️ Telunjuk dan jari tengah = HATI
+    if count == 2 and index_up and middle_up:
+        return "HEART"
+
+    # ☝️ Telunjuk saja = I LOVE YOU
+    if count == 1 and index_up:
+        return "LOVE"
+
+    # ✋ Telapak terbuka = GALAKSI
+    if count >= 4:
+        return "GALAXY"
+
+    # ✊ Kepalan tangan = SATURNUS
+    if count == 0:
+        return "ORB"
+
+    return "GALAXY"
+
+
+# =========================
+# UKURAN DAN POSISI BENTUK
+# =========================
+def get_targets(kind, center):
+    points = SHAPES[kind].copy()
+    cx, cy = center
+
+    if kind == "LOVE":
+        scale_x, scale_y = 320, 120
+    elif kind == "HEART":
+        scale_x, scale_y = 200, 200
+    elif kind == "ORB":
+        scale_x, scale_y = 260, 260
+    else:
+        scale_x, scale_y = 320, 260
+
+    points[:, 0] = cx + points[:, 0] * scale_x
+    points[:, 1] = cy + points[:, 1] * scale_y
+
+    points[:, 0] = np.clip(points[:, 0], 10, WIDTH - 10)
+    points[:, 1] = np.clip(points[:, 1], 10, HEIGHT - 10)
+
+    return points
+
+
+# =========================
+# PROGRAM UTAMA
+# =========================
+def main():
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+    if not cap.isOpened():
+        cap = cv2.VideoCapture(0)
+
+    if not cap.isOpened():
+        print("Kamera tidak ditemukan. Periksa izin kamera.")
+        return
+
+    particles = rng.uniform(
+        [0, 0], [WIDTH, HEIGHT],
+        (PARTICLE_COUNT, 2)
+    ).astype(np.float32)
+
+    velocities = np.zeros_like(particles)
+
+    stars = [
+        (
+            random.randrange(WIDTH),
+            random.randrange(HEIGHT),
+            random.choice([1, 1, 1, 2])
+        )
+        for _ in range(150)
+    ]
+
+    center = (WIDTH // 2, HEIGHT // 2)
+
+    try:
+        with mp_hands.Hands(
+            max_num_hands=1,
+            min_detection_confidence=0.65,
+            min_tracking_confidence=0.60
+        ) as hands:
+
+            while True:
+                ok, frame = cap.read()
+
+                if not ok:
+                    print("Gagal membaca kamera.")
+                    break
+
+                frame = cv2.flip(frame, 1)
+
+                rgb = cv2.cvtColor(
+                    frame, cv2.COLOR_BGR2RGB
+                )
+
+                results = hands.process(rgb)
+
+                gesture = "GALAXY"
+                hand_center = center
+
+                if results.multi_hand_landmarks:
+                    hand = results.multi_hand_landmarks[0]
+
+                    mp_draw.draw_landmarks(
+                        frame,
+                        hand,
+                        mp_hands.HAND_CONNECTIONS
+                    )
+
+                    gesture = detect_gesture(hand)
+
+                    palm = hand.landmark[9]
+                    px = int(palm.x * WIDTH)
+                    py = int(palm.y * HEIGHT)
+
+                    hand_center = (
+                        int(np.clip(px, 170, WIDTH - 170)),
+                        int(np.clip(py, 140, HEIGHT - 140))
+                    )
+
+                targets = get_targets(
+                    gesture, hand_center
+                )
+
+                # Partikel bergerak menuju bentuk
+                delta = targets - particles
+                velocities = velocities * 0.82 + delta * 0.035
+                particles += velocities
+
+                scene = np.zeros(
+                    (HEIGHT, WIDTH, 3), dtype=np.uint8
+                )
+
+                # Bintang latar
+                for sx, sy, radius in stars:
+                    cv2.circle(
+                        scene, (sx, sy), radius,
+                        (35, 35, 65), -1
+                    )
+
+                color = COLORS[gesture]
+
+                # Bentuk tersusun dari partikel saja
+                for i in range(PARTICLE_COUNT):
+                    x = int(particles[i, 0])
+                    y = int(particles[i, 1])
+
+                    if 0 <= x < WIDTH and 0 <= y < HEIGHT:
+                        glow = tuple(c // 3 for c in color)
+
+                        cv2.circle(
+                            scene, (x, y), 2, glow, -1
+                        )
+                        cv2.circle(
+                            scene, (x, y), 1, color, -1
+                        )
+
+                cv2.putText(
+                    scene, f"GESTURE: {gesture}",
+                    (20, 35),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8, color, 2, cv2.LINE_AA
+                )
+
+                cv2.putText(
+                    scene, "Press Q to quit",
+                    (20, HEIGHT - 20),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.5, (150, 150, 150), 1
+                )
+
+                cv2.imshow("HAND TRACKING", frame)
+                cv2.imshow("PARTICLE UNIVERSE", scene)
+
+                if cv2.waitKey(1) & 0xFF == ord("q"):
+                    break
+
+    finally:
+        cap.release()
+        cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    main()`,
+    note:'Source code asli animasi partikel yang diberikan sudah dimasukkan. Gestur ✌️ membentuk hati, ☝️ membentuk tulisan I LOVE YOU, telapak terbuka membentuk galaksi, dan kepalan membentuk Saturnus.',
+    guide:['Gunakan Python 3.12 pada laptop.','Instal dependensi dengan: python -m pip install opencv-python mediapipe numpy.','Simpan kode sebagai hand_universe.py.','Jalankan dari terminal VS Code dengan: python hand_universe.py.','Izinkan akses kamera. Jendela kamera dan jendela PARTIСLE UNIVERSE akan terbuka.','Tekan Q saat jendela animasi aktif untuk keluar.']
+  },
+  'IBN.AI': {
+    language:'javascript',
+    source:`// Frontend IBN.AI mencoba mengirim pesan ke backend:\nasync function sendToAI(message) {\n  const response = await fetch('/api/chat', {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ message })\n  });\n\n  if (!response.ok) {\n    throw new Error('Backend AI belum tersedia');\n  }\n  return response.json();\n}\n\n// Tanpa backend /api/chat, portofolio ini memakai jawaban demo.\n// Jangan letakkan API key rahasia di dalam file HTML publik.`,
+    note:'Cuplikan ini menjelaskan pola koneksi frontend ke backend; ini bukan backend AI lengkap. IBN.AI pada portofolio tetap memberi label mode demo jika API belum tersedia.',
+    guide:['Buka website secara lokal untuk mencoba mode demo.','Agar AI sungguhan berfungsi, buat backend endpoint /api/chat.','Simpan API key hanya di server melalui environment variable, jangan di HTML publik.','Deploy frontend dan backend, lalu pastikan URL endpoint sudah sesuai.']
+  }
+};
+
+const defaultSource={
+  language:'javascript',
+  source:'// Source code untuk proyek ini belum ditambahkan.\n// Masukkan kode asli Anda ke objek projectSources di dalam file HTML.',
+  note:'Source code asli belum tersedia di viewer ini. Tidak ada kode yang dibuat-buat dan diklaim sebagai kode proyek asli.',
+  guide:['Cari file source code asli proyek di laptop Anda.','Salin seluruh isi file dan ganti teks penanda pada projectSources.','Simpan ulang HTML lalu buka di browser untuk memeriksa hasilnya.']
+};
+
+function filterProjects(category){
+  let visible=0;
+  projectCards.forEach(card=>{
+    const categories=card.dataset.category.split(' ');
+    const show=category==='all'||categories.includes(category);
+    card.hidden=!show;if(show)visible++;
+  });
+  projectCount.textContent=visible+' project ditampilkan';
+  projectFilters.forEach(button=>{
+    const active=button.dataset.filter===category;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-pressed',String(active));
+  });
+}
+projectFilters.forEach(button=>button.addEventListener('click',()=>filterProjects(button.dataset.filter)));
+
+function showProjectView(view){
+  activeView=view;
+  document.querySelectorAll('.source-tab').forEach(tab=>tab.classList.toggle('active',tab.dataset.view===view));
+  sourcePanel.hidden=view!=='code';
+  guidePanel.hidden=view!=='guide';
+  demoPanel.hidden=view!=='demo';
+  document.getElementById('copySource').hidden=view!=='code';
+  if(view==='demo')renderProjectDemo(activeProject);
+}
+function renderProjectDemo(card){
+  demoContent.innerHTML='';
+  const title=card?.dataset.title||'';
+  if(title==='Personal Portfolio'){
+    demoNote.textContent='Anda sedang melihat website portofolio ini. Tutup dialog untuk menjelajahi halaman lainnya.';
+    const b=document.createElement('button');b.className='btn primary';b.textContent='Kembali ke Beranda';
+    b.addEventListener('click',()=>{projectModal.close();showPage('home');});demoContent.appendChild(b);
+  } else if(title==='IBN.AI'){
+    demoNote.textContent='Demo IBN.AI tersedia di menu IBN.AI website ini. Tanpa backend, jawabannya masih terbatas.';
+    const b=document.createElement('button');b.className='btn primary';b.textContent='Buka IBN.AI';
+    b.addEventListener('click',()=>{projectModal.close();showPage('ibnai');});demoContent.appendChild(b);
+  } else if(title==='Python Math Programs'){
+    demoNote.textContent='Contoh kalkulator luas persegi panjang dapat dicoba di bawah ini. Source yang ditampilkan tetap berupa contoh latihan.';
+    const form=document.createElement('form');form.className='card';
+    form.innerHTML='<label>Panjang <input id="demoLength" type="number" step="any" required></label><br><label>Lebar <input id="demoWidth" type="number" step="any" required></label><br><button class="btn primary" type="submit">Hitung luas</button><p id="demoMathResult" aria-live="polite"></p>';
+    form.addEventListener('submit',e=>{e.preventDefault();const a=Number(form.querySelector('#demoLength').value),b=Number(form.querySelector('#demoWidth').value);form.querySelector('#demoMathResult').textContent='Luas persegi panjang: '+(a*b);});
+    demoContent.appendChild(form);
+  } else {
+    demoNote.textContent='Demo interaktif belum tersedia untuk proyek ini. Lihat source code dan panduan menjalankan. Untuk project Python yang memakai webcam atau audio, jalankan di laptop sesuai panduan.';
+  }
+}
+function openProjectDetails(card){
+  activeProject=card;
+  document.getElementById('modalTitle').textContent=card.dataset.title;
+  document.getElementById('modalDescription').textContent=card.dataset.description;
+  document.getElementById('modalTech').textContent=card.dataset.tech;
+  document.getElementById('modalStatus').textContent=card.dataset.status;
+  const item=projectSources[card.dataset.title]||defaultSource;
+  sourceCodeEl.textContent=item.source;
+  sourceCodeEl.className='language-'+item.language;
+  sourceNote.textContent=item.note;
+  guideList.innerHTML='';
+  item.guide.forEach(text=>{const li=document.createElement('li');li.textContent=text;guideList.appendChild(li);});
+  showProjectView('code');
+  projectModal.showModal();
+}
+document.querySelectorAll('.project-detail').forEach(button=>button.addEventListener('click',()=>openProjectDetails(button.closest('.project-card'))));
+document.querySelectorAll('.source-tab').forEach(button=>button.addEventListener('click',()=>showProjectView(button.dataset.view)));
+document.getElementById('copySource').addEventListener('click',async()=>{
+  try{
+    await navigator.clipboard.writeText(sourceCodeEl.textContent);
+    document.getElementById('copySource').textContent='Tersalin ✓';
+    setTimeout(()=>document.getElementById('copySource').textContent='Copy Code',1500);
+  }catch(e){
+    const range=document.createRange();range.selectNodeContents(sourceCodeEl);
+    const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);
+    document.getElementById('copySource').textContent='Pilih kode lalu salin';
+  }
+});
+document.getElementById('closeProjectModal').addEventListener('click',()=>projectModal.close());
+document.getElementById('modalDone').addEventListener('click',()=>projectModal.close());
+projectModal.addEventListener('click',event=>{if(event.target===projectModal)projectModal.close();});
+filterProjects('all');
+
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTopButton.classList.toggle('visible', window.scrollY > 420);
+}, { passive: true });
+backToTopButton.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
